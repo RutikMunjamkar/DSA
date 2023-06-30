@@ -1,0 +1,43 @@
+/*First call all the recursive calls by decrementing the value of n by 1. if you reach the base case which is 1 or 0 then return the dp
+after that check the n whether it is even or odd. if it is even then the value of that index postioned element would be the value at the 
+index/2 and if it is odd then the value of the index positioned element would be value at index/2 summed index/2+1
+*/
+
+class Solution {
+    public int getMaximumGenerated(int n) {
+        int[]dp=new int[n+1];
+        dp[0]=0;
+        if(n==0){
+            return 0;
+        }
+        if(n==1){
+            return 1;
+        }
+        dp[1]=1;
+        for(int i=2;i<=n;i++){
+            dp[i]=-1;
+        }
+        dp=find(dp,n);
+        int max=Integer.MIN_VALUE;
+        for(int i=0;i<=n;i++){
+            if(dp[i]>max){
+                max=dp[i];
+            }
+            System.out.print(dp[i]+" ");
+        }
+        return max;
+    }
+    public static int[] find(int[]dp, int n){
+        if(n==0 || n==1){
+            return dp;
+        }
+        dp=find(dp,n-1);
+        if(n%2==0 ){
+            dp[n]=dp[n/2];
+        }
+        if(n%2==1){
+            dp[n]=dp[n/2+1]+dp[n/2];
+        }
+        return dp;
+    }
+}
