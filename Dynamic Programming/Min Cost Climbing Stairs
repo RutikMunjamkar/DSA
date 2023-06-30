@@ -1,0 +1,33 @@
+/*
+The idea here is store the minimum cost requried for each step so that we can reuse it later. the first step either one or two does not 
+require cost and we have to reach the nth index or n+1 step if started from bottom or -1th index or -1th step if strted for the top.
+The idead is called dynamic programming
+*/
+
+class Solution {
+    public int minCostClimbingStairs(int[] cost) {
+        int n=cost.length;
+        int[]dp=new int[n+1];
+        return find(dp,cost,n,n);
+    }
+    public static int find(int[]dp, int[]cost, int n, int x){
+        if(n==0 || n==1){
+            return cost[n];
+        }
+        if(dp[n]!=0){
+            return dp[n];
+        }
+        int a=find(dp,cost,n-1,x);
+        if(n-1>=0){
+            dp[n-1]=a;
+        }
+        int b=find(dp,cost,n-2,x);
+        if(n-2>=0){
+            dp[n-2]=b;
+        }
+        if(n==x){
+            return Math.min(a,b);
+        }
+        return cost[n]+(int)(Math.min(a,b));
+    }
+}
