@@ -1,0 +1,34 @@
+/*
+This is the leetcode 118 pascals triangle question
+There could be three questions possible for the question
+1. find the value at the ith row and jth column
+-->> formula for the above problem statement (n-1)C(r-1)  
+Time complexity 
+2. return the xth row
+3. print all the rows 
+     Time Complexity       Space complexity
+1.   O(N)                      O(1)
+2.   O(N)                      O(N)
+3.   O(N^2)                    O(N^2)
+*/
+
+class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>>result=new ArrayList<>();
+        List<Integer>row,prev=null;
+        for(int i=0;i<numRows;i++){
+            row=new ArrayList<>();
+            for(int j=0;j<=i;j++){
+                if(j==0 || j==i){
+                    row.add(1);
+                }
+                else{
+                    row.add(prev.get(j-1)+prev.get(j));
+                }
+            }
+            prev=row;
+            result.add(row);
+        }
+        return result;
+    }
+}
