@@ -1,0 +1,34 @@
+/*The idea here is to find the nth term and the nth term is equal to the last three terms. the function would recursively keep 
+calling until it would find the last three terms. By Using this terms, we would find the fourth and then store, again find and again
+store and so on...
+By storing we are effectively finding out the next value. 
+
+This is known as the basic dynamic Programmin
+*/
+
+
+class Solution {
+    public int tribonacci(int n) {
+        int[]dp=new int[n+1];
+        if(n==0){
+            return 0;
+        }
+        if(n>0 && n<3){
+            return 1;
+        }
+        dp[0]=0;
+        dp[1]=1;
+        dp[2]=1;
+        for(int i=3;i<=n;i++){
+            dp[i]=-1;
+        }
+        return find(dp,n);
+    }
+    public static int find(int[]dp, int n){
+        if(dp[n]!=-1){
+            return dp[n];
+        }
+        dp[n]=find(dp,n-1)+find(dp,n-2)+find(dp,n-3);
+        return dp[n];
+    }
+}
