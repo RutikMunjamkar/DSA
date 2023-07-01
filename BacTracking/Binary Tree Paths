@@ -1,0 +1,49 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+
+/*
+This solution states that how actually bactracking works, it has travelled every node. if it was the end node then added the string to 
+list and moved back and again going to the every node possible. and so on...
+
+*/
+class Solution {
+    public List<String> binaryTreePaths(TreeNode root) {
+        List<String>list=new ArrayList<>();
+        String name="";
+        return find(root,list,name);
+    }
+    public static List<String> find(TreeNode root,List<String>list,String name){
+        if(root.left==null && root.right==null){
+            name+=root.val;
+            list.add(name);
+            return list;
+        }
+        if(root.left==null){
+            name+=root.val+"->";
+            list=find(root.right,list,name);
+            return list;
+        }
+        if(root.right==null){
+            name+=root.val+"->";
+            list=find(root.left,list,name);
+            return list;
+        }
+        name+=root.val+"->";
+        list=find(root.left,list,name);
+        list=find(root.right,list,name);
+        return list;
+    }
+}
