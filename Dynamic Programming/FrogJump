@@ -1,0 +1,38 @@
+//the question is on Frog Jump from CodeStudio
+
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static int frogJump(int n, int heights[]) {
+        int[]dp=new int[n];
+        Arrays.fill(dp,-1);
+        return find(n-1,heights,dp);
+    }
+    public static int find(int n, int[]heights, int[]dp ){
+        if(n<=0){
+            return 0;
+        }
+        if(dp[n]!=-1){
+            return dp[n];
+        }
+        int a=find(n-1,heights,dp); int x=Integer.MAX_VALUE; 
+        if(n-1>=0){
+            dp[n-1]=a;
+            x=(int)(Math.abs(heights[n]-heights[n-1]));
+            x=x+dp[n-1];
+        }
+        int b=find(n-2,heights,dp); int y=Integer.MAX_VALUE;
+        if(n-2>=0 ){
+            dp[n-2]=b;
+            y=(int)(Math.abs(heights[n]-heights[n-2]));
+            y=y+dp[n-2];
+        }
+        if(n-2<0){
+            return x;
+        }
+        if(n-1<0){
+            return y;
+        }
+        return (int)(Math.min(x,y));
+    } 
+}
