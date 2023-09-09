@@ -1,0 +1,20 @@
+//Concept of pick and non pick which is used in the subseqences 
+class Solution {
+    public int rob(int[] nums) {
+        int[]dp=new int[nums.length];
+        Arrays.fill(dp,-1);
+        return find(0,nums,dp);
+    }
+    public static int find(int i, int[]nums, int[]dp){
+        if(i>=nums.length){
+            return 0;
+        }
+        if(dp[i]!=-1){
+            return dp[i];
+        }
+        int pick=nums[i]+find(i+2,nums,dp);
+        int nonpick=0+find(i+1,nums,dp);
+        dp[i]=(int)(Math.max(pick,nonpick));
+        return dp[i];
+    }
+}
