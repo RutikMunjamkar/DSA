@@ -1,0 +1,31 @@
+//62. Unique Paths Memoization
+class Solution {
+    public int uniquePaths(int m, int n) {
+        int[][]dp=new int[m][n];
+        for(int i=0;i<m;i++){
+            Arrays.fill(dp[i],-1);
+        }
+        return find(0,0,dp);
+    }
+    public static int find(int i, int j, int[][]dp){
+        if(i==dp.length-1 && j==dp[0].length-1){
+            return 1;
+        }
+        if(i>=dp.length || j>=dp[0].length){
+            return 0;
+        }
+        if(dp[i][j]!=-1){
+            return dp[i][j];
+        }
+        int x=find(i,j+1,dp);
+        // if(j+1<dp[i].length){
+        //     x=find(i,j+1,dp);
+        // }
+        int y=find(i+1,j,dp);
+        // if(i+1<dp.length){
+        //     y=find(i+1,j,dp);
+        // }
+        dp[i][j]=x+y;
+        return dp[i][j];
+    }
+}
