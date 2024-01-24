@@ -17,6 +17,9 @@ class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer>list=new ArrayList<>();
         TreeNode curr=root;
+        //morris inorder traversal
+        //Time Complexity:- O(N)
+        //Space Complexity:-O(1)
         while(curr!=null){
             if(curr.left==null){
                 list.add(curr.val);
@@ -33,6 +36,7 @@ class Solution {
                 }
                 else{
                     list.add(curr.val);
+                    prev.right=null;
                     curr=curr.right;
                 }
             }
