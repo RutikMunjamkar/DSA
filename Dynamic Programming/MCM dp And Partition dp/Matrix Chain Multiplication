@@ -1,0 +1,26 @@
+//User function Template for Java
+class Solution{
+    static int matrixMultiplication(int n, int arr[]){
+        int[][]dp=new int[n][n];
+        for(int i=0;i<n;i++){
+            Arrays.fill(dp[i],-1);
+        }
+        return find(1,n-1,dp,arr);
+    }
+    public static int find(int i, int j, int[][]dp, int[]arr){
+        if(i==j){
+            return 0;
+        }
+        if(dp[i][j]!=-1){
+            return dp[i][j];
+        }
+        int cost=Integer.MAX_VALUE;
+        for(int k=i;k<j;k++){
+            //cost to multiply the current length of matirces plus the internal addintion of 
+            int x=arr[i-1]*arr[k]*arr[j]+find(i,k,dp,arr)+find(k+1,j,dp,arr);
+            cost=(int)(Math.min(cost,x));
+        }
+        dp[i][j]=cost;
+        return cost;
+    }
+}
