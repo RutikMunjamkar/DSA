@@ -13,3 +13,8 @@ ex:-Collections.sort(LL,Comparator.comparingIn(list->list.get(1)));
 
 -->> if you want the custom sorting then use the hashmap and the store in the list of pair class
 and then sort accordingly
+
+-->>if you need the different dataypes in the List then create the List of Objetcs
+ex:-List<Objects>list=new ArrayList<>();
+//could also be stated as 
+ex:-List list=new ArrayList<>();
