@@ -1,0 +1,23 @@
+#Comparator Methods
+
+1. for sorting the reversly
+-->Comparator.reverseOrder();
+
+2. for sorting using the int
+-->Compartor.comparingInt();
+
+3. for sorting (second priority) using the int
+->Comparator.comparingDouble().thencomparingInt();
+
+4. for sorting using the Double
+-->Compartor.comparingDuble();
+
+5. for sorting (second priority) using the Double
+->Comparator.comparingDouble().thencomparingDouble();
+
+6. for sorting using the char, strings
+-->Compartor.comparing();
+
+7. for sorting (second priority) using the char, strings
+->Comparator.comparingDouble().thencomparing();
+
