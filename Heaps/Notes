@@ -1,0 +1,15 @@
+-->>Sorting for the sets can be done using the TreeSet
+-->>for reverse Sorting use the Comparator
+ex:- TreeSet<Integer>set=new TreeSet<Comparator.reverseOrder());
+
+-->>for Maps use TreeMap for the ascending sorting( sorting based on the keys )
+-->>for reverse sorting base on keys use the Comparator
+ex:-  TreeMap<Integer,Integer>hash=new HashMap<>(Comparator,.reverseOrder());
+
+-->> for sorting TreeMap based on the values
+-->>  import all the keys value pair in the list and then use comparator
+ex:-Collections.sort(LL,Comparator.comparingIn(list->list.get(1)));
+-->>This will sort in the ascending order of the values
+
+-->> if you want the custom sorting then use the hashmap and the store in the list of pair class
+and the store the list it in the linkedHashMap which could be used further
