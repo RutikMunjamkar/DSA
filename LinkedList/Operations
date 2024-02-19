@@ -1,0 +1,10 @@
+LinkedList is a linear data structure that consists of nodes holding a data field and a reference to another node.
+
+Let’s present the average estimate of time we need to perform some basic operations:
+
+add() – appends an element to the end of the list. It only updates a tail, and therefore, it’s O(1) constant-time complexity.
+add(index, element) – on average runs in O(n) time
+get() – searching for an element takes O(n) time.
+remove(element) – to remove an element, we first need to find it. This operation is O(n).
+remove(index) – to remove an element by index, we first need to follow the links from the beginning; therefore, the overall complexity is O(n).
+contains() – also has O(n) time complexity
