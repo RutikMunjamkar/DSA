@@ -1,5 +1,6 @@
 class Solution {
     public int[] findOrder(int n, int[][] arr) {
+        //Topological sort works on the directed Acyclic graph 
         HashMap<Integer,List<Integer>>hash=new HashMap<>();
         for(int i=0;i<n;i++){
             hash.put(i,new ArrayList<>());
