@@ -1,0 +1,60 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class SegmentTree {
+    private static int n;
+    private static int[]arr;
+    private static int[]tree;
+    public static void main(String[]args){
+        arr=new int[]{1,2,9,7,5,4};
+        n=arr.length;
+        tree=new int[n*4];
+        build(0,0,n-1);
+        //Time Complexity:O(logN)
+        int x=query(0,0,n-1,4,5);//output the maximum element in the given range
+        //Time Complexity:-O(logN)
+        update(0,0,n-1,0,7);//put value 7 at index 0
+        System.out.println(Arrays.toString(arr));
+        System.out.println(Arrays.toString(tree));
+    }
+    public static void update(int node, int start, int end, int index, int val){
+        if(start==end){
+            arr[index]=val;
+            tree[node]=arr[index];
+            return;
+        }
+        int mid=(start+end)/2;
+        if(index>=start && index<=mid){
+            update(2*node+1,start,mid,index,val);
+        }
+        else{
+            update(2*node+2, mid+1,end,index,val);
+        }
+        tree[node]=tree[2*node+1]+tree[2*node+2];
+    }
+    public static int query(int node, int start, int end, int L, int R){
+        if(end<L || start>R){
+            //does not overlap
+            return 0;
+        }
+        if(start>=L && end<=R){
+            //completely overlaps
+            return tree[node];
+        }
+        //partially overlaps
+        int mid=(start+end)/2;
+        int left=query(2*node+1,start,mid,L,R);
+        int right=query(2*node+2,mid+1,end,L,R);
+        return (int)(Math.max(left,right));
+    }
+    public static void build(int node, int start, int end){
+        if(start==end){
+            tree[node]=arr[start];
+            return;
+        }
+        int mid=(start+end)/2;
+        build(2*node+1,start,mid);
+        build(2*node+2,mid+1,end);
+        tree[node]=(int)(Math.max(tree[2*node+1],tree[2*node+2]));
+    }
+}
