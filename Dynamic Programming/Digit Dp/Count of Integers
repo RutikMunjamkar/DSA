@@ -1,0 +1,62 @@
+class Solution {
+    private static long mod;
+    private static long[][][]dp;
+    public int count(String num1, String num2, int min_sum, int max_sum) {
+        mod=(long)(1e9)+7;
+        // maximum length of the string could be 23 as mentioned is constraints
+        dp=new long[23][401][2];
+        for(int i=0;i<23;i++){
+            for(int j=0;j<401;j++){
+                Arrays.fill(dp[i][j],-1L);
+            }
+        }
+        //find(num1....nums2)=find(num2)-find(num2-1);
+        long x=find(0,0,1,num2,min_sum,max_sum);
+        dp=new long[23][401][2];
+        for(int i=0;i<23;i++){
+            for(int j=0;j<401;j++){
+                Arrays.fill(dp[i][j],-1L);
+            }
+        }
+        long y=find(0,0,1,num1,min_sum,max_sum);
+        int sum=0;
+        for(int i=0;i<num1.length();i++){
+            sum+=(int)(num1.charAt(i)-'0');
+        }
+        if(sum>=min_sum && sum<=max_sum){
+            y--;
+        }
+        // converting it to the positive side
+        return (int)((x-y+mod)%mod);
+    }
+    public static long find(int i, int sum, int flag, String s, int min_sum, int max_sum){
+        if(i>=s.length()){
+            if(sum>=min_sum && sum<=max_sum){
+                return 1L;
+            }
+            return 0L;
+        }
+        if(dp[i][sum][flag]!=-1L){
+            return dp[i][sum][flag];
+        }
+        long ans=0L;
+        if(flag==1){
+            char ch=s.charAt(i);
+            for(int j=0;j<=(int)(ch-'0');j++){
+                if((int)(ch-'0')==j){
+                    ans=(ans+find(i+1,sum+j,1,s,min_sum,max_sum)%mod)%mod;
+                }
+                else{
+                    ans=(ans+find(i+1,sum+j,0,s,min_sum,max_sum)%mod)%mod;
+                }
+            }
+        }
+        else{
+            for(int j=0;j<=9;j++){
+                ans=(ans+find(i+1,sum+j,0,s,min_sum,max_sum)%mod)%mod;
+            }
+        }
+        dp[i][sum][flag]=ans;
+        return ans;
+    }
+}
