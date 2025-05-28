@@ -1,0 +1,46 @@
+class Solution {
+    public boolean isCyclic(int V, int[][] edges) {
+        //calculate the indeegre of the each vertex
+        int[]indegree=new int[V];
+        for(int i=0;i<edges.length;i++){
+            int dest=edges[i][1];
+            indegree[dest]++;
+        }
+        //metadata of the graph
+        HashMap<Integer,List<Integer>>hash=new HashMap<>();
+        for(int i=0;i<edges.length;i++){
+            int src=edges[i][0];
+            int dest=edges[i][1];
+            List<Integer>list=hash.getOrDefault(src,new ArrayList<>());
+            list.add(dest);
+            hash.put(src,list);
+        }
+        //add to queue whose indegree is 0
+        Queue<Integer>que=new LinkedList<>();
+        for(int i=0;i<V;i++){
+            if(indegree[i]==0){
+                que.add(i);
+            }
+        }
+        int count=0;
+        while(!que.isEmpty()){
+            int x=que.remove();
+            count++;
+            for(int j=0;j<hash.getOrDefault(x,new ArrayList<>()).size();j++){
+                int dest=hash.get(x).get(j);
+                if(indegree[dest]>=1){
+                    indegree[dest]--;
+                }
+                if(indegree[dest]==0){
+                    que.add(dest);
+                }
+            }
+        }
+        //if all the vertices are not added then for sure there is cycle 
+        //means the indegree is not able to be zero
+        if(count<V){
+            return true;
+        }
+        return false;
+    }
+}
