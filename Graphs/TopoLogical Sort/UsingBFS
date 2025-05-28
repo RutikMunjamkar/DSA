@@ -1,0 +1,35 @@
+class Solution {
+    public static ArrayList<Integer> topoSort(int V, int[][] edges) {
+        int[]indegree=new int[V];
+        HashMap<Integer,List<Integer>>hash=new HashMap<>();
+        for(int i=0;i<edges.length;i++){
+            int src=edges[i][0];
+            int dest=edges[i][1];
+            indegree[dest]++;
+            List<Integer>list=hash.getOrDefault(src,new ArrayList<>());
+            list.add(dest);
+            hash.put(src,list);
+        }
+        Queue<Integer>que=new LinkedList<>();
+        for(int i=0;i<V;i++){
+            if(indegree[i]==0){
+                que.add(i);
+            }
+        }
+        ArrayList<Integer>list=new ArrayList<>();
+        while(!que.isEmpty()){
+            int x=que.remove();
+            list.add(x);
+            for(int j=0;j<hash.getOrDefault(x,new ArrayList<>()).size();j++){
+                int dest=hash.get(x).get(j);
+                if(indegree[dest]>=1){
+                    indegree[dest]--;
+                }
+                if(indegree[dest]==0){
+                    que.add(dest);
+                }
+            }
+        }
+        return list;
+    }
+}
