@@ -1,4 +1,5 @@
 class Solution {
+//Kahn's Algorithm
     public boolean isCyclic(int V, int[][] edges) {
         //calculate the indeegre of the each vertex
         int[]indegree=new int[V];
