@@ -1,0 +1,19 @@
+class Solution {
+    // Function to return a list containing the DFS traversal of the graph.
+    public ArrayList<Integer> dfs(ArrayList<ArrayList<Integer>> adj) {
+        int[]vis=new int[adj.size()];
+        ArrayList<Integer>list=new ArrayList<>();
+        find(0,list,adj,vis);
+        return list;
+    }
+    public static void find(int src, ArrayList<Integer>list, ArrayList<ArrayList<Integer>> adj, int[]vis){
+        vis[src]=1;
+        list.add(src);
+        for(int j=0;j<adj.get(src).size();j++){
+            int dest=adj.get(src).get(j);
+            if(vis[dest]==0){
+                find(dest,list,adj,vis);
+            }
+        }
+    }
+}
