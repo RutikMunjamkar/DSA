@@ -1,0 +1,42 @@
+class Solution {
+    public boolean isCycle(int V, int[][] arr) {
+        HashMap<Integer,List<Integer>>hash=new HashMap<>();
+        for(int i=0;i<arr.length;i++){
+            int x1=arr[i][0];
+            int x2=arr[i][1];
+            List<Integer>list1=hash.getOrDefault(x1,new ArrayList<>());
+            list1.add(x2);
+            hash.put(x1,list1);
+            List<Integer>list2=hash.getOrDefault(x2,new ArrayList<>());
+            list2.add(x1);
+            hash.put(x2,list2);
+        }
+        int[]vis=new int[V];
+        //might not be connected 
+        for(int i=0;i<V;i++){
+            if(vis[i]==0){
+                boolean b=find(i,-1,vis,hash);
+                if(b==true){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public static boolean find(int src, int from, int[]vis, HashMap<Integer,List<Integer>>hash){
+        vis[src]=1;
+        for(int j=0;j<hash.getOrDefault(src,new ArrayList<>()).size();j++){
+            int dest=hash.get(src).get(j);
+            if(vis[dest]==0 && dest!=from){
+                boolean b=find(dest,src,vis,hash);
+                if(b==true){
+                    return true;
+                }
+            }
+            else if(vis[dest]==1 && dest!=from){
+                return true;
+            }
+        }
+        return false;
+    }
+}
