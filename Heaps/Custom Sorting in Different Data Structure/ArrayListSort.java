@@ -23,5 +23,7 @@ public class ArrayListSort {
 //        comparing is used to compare the strings, comparingLong,comparingDouble is used for the long and double
 //        Collections.sort(LL,Comparator.comparing(list->(String)(list.get(1))));
         System.out.println(LL);
+        Collections.sort(LL, Comparator.comparingInt((List<Integer> list) -> list.get(0))
+                                .thenComparingInt(list -> list.get(1)));
     }
 }
