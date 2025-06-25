@@ -1,0 +1,50 @@
+class Solution {
+    public long kMirror(int k, int n) {
+        long len=1;
+        long sum=0;
+        //we are genrating all the palondromes in the base 10 
+        while(n>0){
+            for(int x=0;x<=1;x++){
+                for(long i=len;i<len*10 && n>0;i++){
+                    String curr=String.valueOf(i);
+                    if(x==0){
+                        String oddhalf=new StringBuilder(curr.substring(0,curr.length()-1)).reverse().toString();
+                        String odd=curr+oddhalf;
+                        boolean b=converToBaseKAndCheckPal(odd,k);
+                        if(b==true){
+                            sum+=Long.parseLong(odd);
+                            n--;
+                        }
+                    }
+                    else{
+                        String evenhalf=new StringBuilder(curr.substring(0,curr.length())).reverse().toString();
+                        String even=curr+evenhalf;
+                        boolean b=converToBaseKAndCheckPal(even, k);
+                        if(b==true){
+                            sum+=Long.parseLong(even);
+                            n--;
+                        }
+                    }
+                }
+            }
+            len*=10;
+        }
+        return sum;
+    }
+    public static boolean converToBaseKAndCheckPal(String s, int k){
+        long num=Long.parseLong(s);
+        String str="";
+        while(num!=0){
+            str+=num%k;
+            num=num/k;
+        }
+        for(int i=0;i<=(str.length()-1)/2;i++){
+            char ch1=str.charAt(i);
+            char ch2=str.charAt(str.length()-i-1);
+            if(ch1!=ch2){
+                return false;
+            }
+        }
+        return true;
+    }
+}
