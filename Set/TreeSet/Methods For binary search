@@ -1,34 +1,11 @@
-import java.util.*;
-Integer floor = set.floor(1);  // This is valid
-int floor = set.floor(1);      // ❌ This will throw NullPointerException if result is null
+TreeSet<Integer> set = new TreeSet<>();
+set.add(2);
+set.add(4);
+set.add(6);
+set.add(8);
 
-public class TreeSetSingleTest {
-    public static void main(String[] args) {
-        // Initialize TreeSet with sorted elements
-        TreeSet<Integer> set = new TreeSet<>(Arrays.asList(2, 4, 5, 6, 8, 10, 12));
 
-        // Value to check
-        int x = 1;
-
-        // ceiling(x): smallest element ≥ x
-        Integer ceiling = set.ceiling(x);
-        System.out.println("ceiling(" + x + ")  = " + (ceiling != null ? ceiling : "null"));
-
-        // floor(x): largest element ≤ x
-        Integer floor = set.floor(x);
-        System.out.println("floor(" + x + ")    = " + (floor != null ? floor : "null"));
-
-        // lower(x): largest element < x
-        Integer lower = set.lower(x);
-        System.out.println("lower(" + x + ")    = " + (lower != null ? lower : "null"));
-
-        // higher(x): smallest element > x
-        Integer higher = set.higher(x);
-        System.out.println("higher(" + x + ")   = " + (higher != null ? higher : "null"));
-    }
-}
-ceiling(1)  = 2
-floor(1)    = null
-lower(1)    = null
-higher(1)   = 2
-//time complexity of each one of them is Logn
+floor(key)	--- Greatest element ≤ given key	--->> set.floor(5)----->>	4
+ceiling(key) --	Smallest element ≥ given key	--->> set.ceiling(5)--->>	6
+lower(key)	--- Greatest element < given key	--->> set.lower(5)	--->>   4
+higher(key)	--- Smallest element > given key	--->> set.higher(5)	--->>   6
