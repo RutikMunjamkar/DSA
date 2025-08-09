@@ -1,0 +1,30 @@
+
+class Solution {
+    //All Edges have a weight of 1
+    public int[] shortestPath(ArrayList<ArrayList<Integer>> adj, int src) {
+        int v=adj.size();
+        int[]res=new int[v];
+        Arrays.fill(res,(int)(Math.pow(10,5)));
+        res[src]=0;
+        Queue<Integer>que=new LinkedList<>();
+        que.add(src);que.add(0);
+        while(!que.isEmpty()){
+            int node=que.remove();
+            int dist=que.remove();
+            for(int i=0;i<adj.get(node).size();i++){
+                int dest=adj.get(node).get(i);
+                if(dist+1<res[dest]){
+                    res[dest]=dist+1;
+                    que.add(dest);
+                    que.add(res[dest]);
+                }
+            }
+        }
+        for(int i=0;i<v;i++){
+            if(res[i]==(int)(Math.pow(10,5))){
+                res[i]=-1;
+            }
+        }
+        return res;
+    }
+}
