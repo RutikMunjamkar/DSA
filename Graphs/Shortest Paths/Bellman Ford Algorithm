@@ -10,6 +10,11 @@ That indicates distances can keep decreasing infinitely → negative cycle.
 Note:- Dijktra's Algorithm will fail, if it has negative cycles.
 and negative cycles may come from negative edges. thats why we use the bellman ford algorithm. 
 
+-------------------------------------------------------------------------------------
+Time Complexity :- O(V*E)
+--------------------------------------------------------------------------------------
+
+
 class Solution {
     public int[] bellmanFord(int V, int[][] err, int src) {
         int[]res=new int[V];
