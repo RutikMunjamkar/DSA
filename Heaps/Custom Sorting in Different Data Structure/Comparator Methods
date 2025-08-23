@@ -1,3 +1,7 @@
+-----------------------------------------------
+Note:-  Float uses Double for the comparing
+-----------------------------------------------
+
 int (List<List<Integer>> example)
     | Declaration:  List<List<Integer>> LL = new ArrayList<>();
     | First Comparing:  Collections.sort(LL, Comparator.comparingInt((List<Integer> list) -> list.get(0)));
