@@ -1,22 +1,39 @@
-#Comparator Methods
++---------+
+| int     |
++---------+
+| First Comparing:  Comparator.comparingInt(ClassName::getIntField) |
+| Second Comparing: Comparator.comparingInt(ClassName::getIntField) |
+|                   .thenComparingInt(ClassName::getSecondIntField) |
++---------+
 
-1. for sorting the reversly
--->Comparator.reverseOrder();
++---------+
+| long    |
++---------+
+| First Comparing:  Comparator.comparingLong(ClassName::getLongField) |
+| Second Comparing: Comparator.comparingLong(ClassName::getLongField) |
+|                   .thenComparingLong(ClassName::getSecondLongField) |
++---------+
 
-2. for sorting using the int
--->Compartor.comparingInt();
++---------+
+| float   |
++---------+
+| First Comparing:  Comparator.comparingDouble(ClassName::getFloatField) |
+| Second Comparing: Comparator.comparingDouble(ClassName::getFloatField) |
+|                   .thenComparingDouble(ClassName::getSecondFloatField) |
++---------+
 
-3. for sorting (second priority) using the int
-->Comparator.comparingDouble().thencomparingInt();
++---------+
+| double  |
++---------+
+| First Comparing:  Comparator.comparingDouble(ClassName::getDoubleField) |
+| Second Comparing: Comparator.comparingDouble(ClassName::getDoubleField) |
+|                   .thenComparingDouble(ClassName::getSecondDoubleField) |
++---------+
 
-4. for sorting using the Double
--->Compartor.comparingDuble();
-
-5. for sorting (second priority) using the Double
-->Comparator.comparingDouble().thencomparingDouble();
-
-6. for sorting using the char, strings
--->Compartor.comparing();
-
-7. for sorting (second priority) using the char, strings
-->Comparator.comparingDouble().thencomparing();
++---------+
+| String  |
++---------+
+| First Comparing:  Comparator.comparing(ClassName::getStringField) |
+| Second Comparing: Comparator.comparing(ClassName::getStringField) |
+|                   .thenComparing(ClassName::getSecondStringField) |
++---------+
