@@ -1,39 +1,27 @@
-+---------+
-| int     |
-+---------+
-| First Comparing:  Comparator.comparingInt(ClassName::getIntField) |
-| Second Comparing: Comparator.comparingInt(ClassName::getIntField) |
-|                   .thenComparingInt(ClassName::getSecondIntField) |
-+---------+
+int (List<List<Integer>> example)
+    | Declaration:  List<List<Integer>> LL = new ArrayList<>();
+    | First Comparing:  Collections.sort(LL, Comparator.comparingInt((List<Integer> list) -> list.get(0)));
+    | Second Comparing: Collections.sort(LL, Comparator.comparingInt((List<Integer> list) -> list.get(0))
+                        .thenComparingInt(list -> list.get(1)));
 
-+---------+
-| long    |
-+---------+
-| First Comparing:  Comparator.comparingLong(ClassName::getLongField) |
-| Second Comparing: Comparator.comparingLong(ClassName::getLongField) |
-|                   .thenComparingLong(ClassName::getSecondLongField) |
-+---------+
+long (long[] array example)
+    | Declaration:  long[][] arr = { {5,2}, {3,4}, {5,1} };
+    | First Comparing:  Arrays.sort(arr, Comparator.comparingLong(a -> a[0]));
+    | Second Comparing: Arrays.sort(arr, Comparator.comparingLong(a -> a[0])
+                        .thenComparingLong(a -> a[1]));
 
-+---------+
-| float   |
-+---------+
-| First Comparing:  Comparator.comparingDouble(ClassName::getFloatField) |
-| Second Comparing: Comparator.comparingDouble(ClassName::getFloatField) |
-|                   .thenComparingDouble(ClassName::getSecondFloatField) |
-+---------+
+float (List<List<Float>> example)
+    | Declaration:  List<List<Float>> LLf = new ArrayList<>();
+    | First Comparing:  Collections.sort(LLf, Comparator.comparing((List<Float> list) -> list.get(0)));
+    | Second Comparing: Collections.sort(LLf, Comparator.comparing((List<Float> list) -> list.get(0))
+                        .thenComparing(list -> list.get(1)));
 
-+---------+
-| double  |
-+---------+
-| First Comparing:  Comparator.comparingDouble(ClassName::getDoubleField) |
-| Second Comparing: Comparator.comparingDouble(ClassName::getDoubleField) |
-|                   .thenComparingDouble(ClassName::getSecondDoubleField) |
-+---------+
+double (double[] array example)
+    | Declaration:  double[][] arrD = { {5.2,1.1}, {3.0,2.5}, {5.2,0.9} };
+    | First Comparing:  Arrays.sort(arrD, Comparator.comparingDouble(a -> a[0]));
+    | Second Comparing: Arrays.sort(arrD, Comparator.comparingDouble(a -> a[0])
+                        .thenComparingDouble(a -> a[1]));
 
-+---------+
-| String  |
-+---------+
-| First Comparing:  Comparator.comparing(ClassName::getStringField) |
-| Second Comparing: Comparator.comparing(ClassName::getStringField) |
-|                   .thenComparing(ClassName::getSecondStringField) |
-+---------+
+String
+    | Declaration:  List<String> listS = new ArrayList<>();
+    | First Comparing:  Collections.sort(listS, Comparator.comparing((String s) -> s));
