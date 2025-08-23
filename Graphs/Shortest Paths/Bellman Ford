@@ -1,0 +1,30 @@
+From source 0, shortest distance to 1 is -5.
+
+That’s negative, but no negative cycle exists.
+
+The real criterion for a negative cycle is:
+👉 Even after V-1 relaxations, some edge can still be relaxed.
+That indicates distances can keep decreasing infinitely → negative cycle.
+
+class Solution {
+    public int[] bellmanFord(int V, int[][] err, int src) {
+        int[]res=new int[V];
+        Arrays.fill(res,(int)(Math.pow(10,8)));
+        res[src]=0;
+        for(int i=0;i<V;i++){
+            for(int j=0;j<err.length;j++){
+                int s=err[j][0];
+                int d=err[j][1];
+                int w=err[j][2];
+                if(res[s]!=(int)(Math.pow(10,8)) && res[s]+w<res[d]){
+                    // if it has reached the vthe position and still relaxing then the negative cycle exits
+                    if(i==V-1){
+                        return new int[]{-1};
+                    }
+                    res[d]=res[s]+w;
+                }
+            }
+        }
+        return res;
+    }
+}
