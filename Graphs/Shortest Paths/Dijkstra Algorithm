@@ -17,6 +17,7 @@ class Solution{
         while(!pq.isEmpty()){
             Pair p=pq.remove();
             int u=p.node;
+            int dist=p.dist;
             for(int i=0;i<adj.get(u).size();i++){
                 int dest=adj.get(u).get(i).get(0); int dist=adj.get(u).get(i).get(1);
                 if(res[u]+dist<res[dest]){
