@@ -48,7 +48,7 @@ public class FloydWarshallAlgorithm {
         int V=7;
         ArrayList<Edge>[]graph=new ArrayList[V];
         createGraph(graph);
-        //To Find the shorted Paths between each vertex using the Floyd Warshall Algorithm
+        //To Find the shorted Paths between each source and destination using the Floyd Warshall Algorithm
         //The Shortest distance is calculated using the wights of the edges but here i have considered each edge has 1 weight and based on that shortest path is calculated using the dynamic programming/precomputed concept
         int[][]res=Floyd(graph);
         //Time Complexity:O(V^3);
