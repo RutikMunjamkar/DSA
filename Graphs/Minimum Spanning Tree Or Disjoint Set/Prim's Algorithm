@@ -1,0 +1,62 @@
+it only works for the the undirected graph as it have to reach from every node to another
+class Solution {
+    public class Pair implements Comparable<Pair>{
+        int wt;
+        int node;
+        int parent;
+        public Pair(int wt, int node, int parent){
+            this.wt=wt;
+            this.node=node;
+            this.parent=parent;
+        }
+        @Override
+        public int compareTo(Pair p){
+            return Integer.compare(this.wt,p.wt);
+        }
+    }
+    public int spanningTree(int v, int[][] err) {
+        //Prmi's Algorithm
+        HashMap<Integer,List<List<Integer>>>hash=new HashMap<>();
+        for(int i=0;i<err.length;i++){
+            int x=err[i][0];
+            int y=err[i][1];
+            int wt=err[i][2];
+            create(x,y,wt,hash);
+        }
+        PriorityQueue<Pair>pq=new PriorityQueue<>();
+        pq.add(new Pair(0,0,-1));
+        int sum=0;
+        HashMap<Integer,List<List<Integer>>>mst=new HashMap<>();
+        int[]vis=new int[v];
+        while(!pq.isEmpty()){
+            Pair p=pq.remove();
+            int wt=p.wt;
+            int node=p.node;
+            int parent=p.parent;
+            if(vis[node]==1){
+                continue;
+            }
+            if(parent!=-1){
+                sum+=wt;
+                create(node,parent,wt,mst);
+            }
+            vis[node]=1;
+            for(int i=0;i<hash.getOrDefault(node,new ArrayList<>()).size();i++){
+                int dest=hash.get(node).get(i).get(0);
+                int destwt=hash.get(node).get(i).get(1);
+                if(vis[dest]==0){
+                    pq.add(new Pair(destwt,dest,node));
+                }
+            }
+        }
+        return sum;
+    }
+    public void create(int x, int y, int wt, HashMap<Integer,List<List<Integer>>>hash){
+        List<List<Integer>>LL1=hash.getOrDefault(x,new ArrayList<>());
+        List<Integer>list1=new ArrayList<>();list1.add(y);list1.add(wt);LL1.add(list1);
+        hash.put(x,LL1);
+        List<List<Integer>>LL2=hash.getOrDefault(y,new ArrayList<>());
+        List<Integer>list2=new ArrayList<>();list2.add(x);list2.add(wt);LL2.add(list2);
+        hash.put(y,LL2);    
+    }
+}
