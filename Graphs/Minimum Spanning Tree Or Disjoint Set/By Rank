@@ -1,0 +1,41 @@
+public class DisJointSetUnion {
+    private static int[]rank;
+    private static int[]parent;
+    public static void main(String[] args) {
+        int[][]edges=new int[5][2];
+        parent=new int[5];rank=new int[5];
+        for(int i=0;i<5;i++){
+            parent[i]=i;
+        }
+        edges[0][0]=0;edges[0][1]=3;unionByRank(0,1);
+        edges[1][0]=3;edges[1][1]=2;unionByRank(3,2);
+        if(findUlp(3)==findUlp(4)){
+            System.out.println("belong to the same");
+        }
+        else{
+            System.out.println("does not belong to the same");
+        }
+        edges[2][0]=4;edges[2][1]=1;unionByRank(4,1);
+        edges[3][0]=3;edges[4][1]=1;unionByRank(3,1);
+    }
+    public static void unionByRank(int u, int v){
+        int ulp_u=findUlp(u);
+        int ulp_v=findUlp(v);
+        if(rank[ulp_u]<rank[ulp_v]){
+            parent[ulp_u]=ulp_v;
+        }
+        else if(rank[ulp_v]<rank[ulp_u]){
+            parent[ulp_v]=ulp_u;
+        }
+        else{
+            parent[ulp_v]=ulp_u;
+            rank[ulp_u]++;
+        }
+    }
+    public static int findUlp(int node){
+        if(node==parent[node]){
+            return node;
+        }
+        return parent[node]=findUlp(parent[node]);
+    }
+}
