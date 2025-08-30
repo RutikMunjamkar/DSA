@@ -1,0 +1,44 @@
+class Solution {
+    private static int[]parent;
+    private static int[]size;
+    public int spanningTree(int v, int[][] err) {
+        //Kruskal's Algorithm
+        Arrays.sort(err,Comparator.comparingInt((int[]a)->a[2]));
+        size=new int[v]; parent=new int[v]; Arrays.fill(size,1);
+        List<List<Integer>>LL=new ArrayList<>();
+        for(int i=0;i<v;i++){
+            parent[i]=i;
+        }
+        int sum=0;
+        for(int i=0;i<err.length;i++){
+            int src=err[i][0];
+            int dest=err[i][1];
+            int wt=err[i][2];
+            if(findUlP(src)!=findUlP(dest)){
+                unionBySize(src,dest);
+                sum+=wt;
+                List<Integer>list=new ArrayList<>();
+                list.add(src);list.add(dest);LL.add(list);
+            }
+        }
+        return sum;
+    }
+    public static void unionBySize(int u, int v){
+        int ulp_u=findUlP(u);
+        int ulp_v=findUlP(v);
+        if(size[ulp_u]<size[ulp_v]){
+            parent[ulp_u]=ulp_v;
+            size[ulp_v]+=size[ulp_u];
+        }
+        else{
+            parent[ulp_v]=ulp_u;
+            size[ulp_u]+=size[ulp_v];
+        }
+    }
+    public static int findUlP(int node){
+        if(node==parent[node]){
+            return node;
+        }
+        return  parent[node]=findUlP(parent[node]);
+    }
+}
