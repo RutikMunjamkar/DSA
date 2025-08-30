@@ -12,6 +12,7 @@ public class DisJointSetUnion {
         public void unionByRank(int u, int v){
             int ulp_u=findUlp(u);
             int ulp_v=findUlp(v);
+            if(ulp_u==ulp_v){return;}
             if(rank[ulp_u]<rank[ulp_v]){
                 parent[ulp_u]=ulp_v;
             }
