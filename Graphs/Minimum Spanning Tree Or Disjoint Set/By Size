@@ -1,3 +1,5 @@
+//Striver find the By Size to be more logical than the By Rank 
+
 public class DisJointSetUnion2 {
     static class DisJointSet{
         public int[]size;
