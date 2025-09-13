@@ -1,0 +1,47 @@
+class Solution {
+    public static boolean canPartition(int[] nums) {
+        int sum=0;
+        for(int i=0;i<nums.length;i++){
+            sum+=nums[i];
+        }
+        if(sum%2!=0){
+            return false;
+        }
+        int[][]dp=new int[nums.length][sum/2+1];
+        for(int i=0;i<nums.length;i++){
+            Arrays.fill(dp[i],-1);
+        }
+        for(int target=0;target<=sum/2;target++){
+            for(int i=nums.length-1;i>=0;i--){
+                if(target==0){
+                    dp[i][target]=1;continue;
+                }
+                int take=0;
+                if(target-nums[i]>=0 && i+1<nums.length){
+                    take=dp[i+1][target-nums[i]];
+                }
+                int nottake=0;
+                if(i+1<nums.length){
+                    nottake=dp[i+1][target];
+                }
+                dp[i][target]=(take==1 || nottake==1)?1:0;
+            }                                    
+        }
+        return dp[0][sum/2]==1;
+    }
+    public static boolean find(int  i, int target, int[]nums, int [][]dp){
+        if(i>=nums.length || target<0 ){
+            return false;
+        }
+        if(target==0){
+            return true;
+        }
+        if(dp[i][target]!=-1){
+            return dp[i][target]==1;
+        }
+        boolean take=find(i+1,target-nums[i],nums,dp);
+        boolean nottake=find(i+1,target,nums,dp);
+        dp[i][target]=take||nottake?1:0;
+        return dp[i][target]==1;
+    }
+}
