@@ -1,0 +1,35 @@
+
+class Solution {
+    int countPartitions(int[] arr, int d) {
+        int sum=0;
+        for(int i=0;i<arr.length;i++){
+            sum+=arr[i];
+        }
+        int[][]dp=new int[arr.length+1][sum+1];
+        for(int i=0;i<=arr.length;i++){
+            Arrays.fill(dp[i],-1);
+        }
+        int res=0;
+        find(0,sum,arr,dp);
+        for(int i=arr.length;i>=0;i--){
+            for(int j=0;j<=sum;j++){
+                if(i==arr.length){
+                    dp[i][j]=(j==0)?1:0;continue;
+                }
+                int take=0;
+                if(j-arr[i]>=0){
+                    take=dp[i+1][j-arr[i]];
+                }
+                int nottake=dp[i+1][j];
+                dp[i][j]=take+nottake;
+            }
+        }
+        for(int s2=0;s2<=sum;s2++){
+            int currd=sum-2*s2;
+            if(currd==d){
+                res+=dp[0][s2];
+            }
+        }
+        return res;
+    }
+}
