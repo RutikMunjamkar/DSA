@@ -9,3 +9,5 @@ floor(key)	--- Greatest element ≤ given key	--->> set.floor(5)----->>	4
 ceiling(key) --	Smallest element ≥ given key	--->> set.ceiling(5)--->>	6
 lower(key)	--- Greatest element < given key	--->> set.lower(5)	--->>   4
 higher(key)	--- Smallest element > given key	--->> set.higher(5)	--->>   6
+
+Note: - remove(Pair) will only work in case of the TreeSet and TreeMap becuase it soly depends on the compareTo() method 
