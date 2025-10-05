@@ -8,6 +8,8 @@ floorKey(key)	---- Greatest key ≤ given key	---------------------->> map.floor
 ceilingKey(key)	-- Smallest key ≥ given key	---------------------->> map.ceilingKey(5) ----->> 6
 lowerKey(key)	---- Greatest key < given key	---------------------->> map.lowerKey(5)	------>> 4
 higherKey(key) --- Smallest key > given key	---------------------->> map.higherKey(5)	------>> 6
+firstKey(key)	---- first key	---------------------->> map.firstKey()	------>> 2
+lastKey(key)	---- lastkey	---------------------->> map.lastKey()	------>> 8
 floorEntry(key)	-- Entry with greatest key ≤ given key	---------->> map.floorEntry(5)	---->> 4=four
 ceilingEntry(key)- Entry with smallest key ≥ given key------------>> map.ceilingEntry(5)	-->> 6=six
 lowerEntry(key)	-- Entry with greatest key < given key	---------->> map.lowerEntry(5)	---->> 4=four
