@@ -14,12 +14,6 @@ long (long[] array example)
     | Second Comparing: Arrays.sort(arr, Comparator.comparingLong(a -> a[0])
                         .thenComparingLong(a -> a[1]));
 
-float (List<List<Float>> example)
-    | Declaration:  List<List<Float>> LLf = new ArrayList<>();
-    | First Comparing:  Collections.sort(LLf, Comparator.comparing((List<Float> list) -> list.get(0)));
-    | Second Comparing: Collections.sort(LLf, Comparator.comparing((List<Float> list) -> list.get(0))
-                        .thenComparing(list -> list.get(1)));
-
 double (double[] array example)
     | Declaration:  double[][] arrD = { {5.2,1.1}, {3.0,2.5}, {5.2,0.9} };
     | First Comparing:  Arrays.sort(arrD, Comparator.comparingDouble(a -> a[0]));
