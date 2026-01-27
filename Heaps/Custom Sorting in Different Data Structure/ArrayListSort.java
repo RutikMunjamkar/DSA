@@ -25,5 +25,12 @@ public class ArrayListSort {
         System.out.println(LL);
         Collections.sort(LL, Comparator.comparingInt((List<Integer> list) -> list.get(0))
                                 .thenComparingInt(list -> list.get(1)));
+        Collections.sort(LL, Comparator.comparingInt((List<Integer> list) -> list.get(0)).reversed()
+                  .thenComparingInt(list -> list.get(1)));
+
+        Collections.sort(LL, Comparator.comparingInt((List<Integer> l) -> l.get(0)).reversed()
+        .thenComparingInt(l -> l.get(1)));
+
     }
 }
+
